@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- trics.config.api tree view -->
+        <record id="trics_config_api_view_tree" model="ir.ui.view">
+            <field name="name">trics.config.api.view.tree</field>
+            <field name="model">trics.config.api</field>
+            <field name="arch" type="xml">
+                <tree decoration-muted="not active">
+                    <field name="name"/>
+                    <field name="url"/>
+                    <field name="model"/>
+                    <field name="active" widget="boolean_toggle" />
+                    <!-- Add your fields here -->                    
+                </tree>
+            </field>
+        </record>
+        <!-- trics.config.api search view -->
+        <record id="trics_config_api_view_search" model="ir.ui.view">
+            <field name="name">trics.config.api.view.search</field>
+            <field name="model">trics.config.api</field>
+            <field name="arch" type="xml">
+                <search string="Search Description">
+                    <!-- Add your fields here -->
+                    <filter name="active" string="Active" domain="[('active','=',True)]" help="Show active taxes"/>
+                    <filter name="inactive" string="Inactive" domain="[('active','=',False)]" help="Show inactive taxes"/>
+                </search>
+            </field>
+        </record>
+        <!-- trics.config.api form view -->
+        <record id="trics_config_api_view_form" model="ir.ui.view">
+            <field name="name">trics.config.api.view.form</field>
+            <field name="model">trics.config.api</field>
+            <field name="arch" type="xml">
+                <form string="Direccion de API">
+                    <sheet>
+                        <group string="Configuracion">
+                            <field name="name"/>
+                            <field name="url"/>
+                            <field name="model"/>
+                            <field name="active" widget="boolean_toggle" />
+                            
+                            
+                            <!-- Add your fields here -->
+                        </group>
+                        <group string="Sync">
+                                <p> Actualizara los datos que se encuentran actualmente en la base de datos de odoo de este modelo, dependiendo la funcion de la API,
+                                    Se recomienda usar solamente cuando se crea por primera vez la API, o en raro caso que hagan falta datos.
+                            
+                                </p>
+                                <button string="Sync Data" type="object" name="sync_data_api" icon="fa-refresh" class="btn btn-danger oe_stat_button" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- trics.config.api action window -->
+        <record id="trics_config_api_action" model="ir.actions.act_window">
+            <field name="name">Configuracion API</field>
+            <field name="res_model">trics.config.api</field>
+            <field name="context">{"search_default_inactive":1,"search_default_active":1}</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- This Menu Item must have a parent and an action -->
+        <!-- This Menu Item must have a parent and an action -->
+        <menuitem id="trics_config_api_menu_act" name="Tempronics Api" parent="base.menu_custom" sequence="1"/>
+        <menuitem id="trics_config_api_config_menu_act" name="Configuracion" parent="trics_config_api_menu_act" action="trics_config_api_action" sequence="1"/>
+        
+    </data>
+
+</odoo>

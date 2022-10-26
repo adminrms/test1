@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <!-- tempronics.report kanban view -->
+    <record id="tempronics_report_view_kanban" model="ir.ui.view">
+        <field name="name">tempronics.report.view.kanban</field>
+        <field name="model">tempronics.report</field>
+        <field name="arch" type="xml">
+            <kanban class="oe_background_grey" create="0" string="Tempronics Reports">
+                <!-- Add your fields here -->
+                <field name="name"/>
+                <field name="color"/>
+                <field name="view_wiz"/>
+                
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="#{kanban_color(record.color.raw_value)}">
+                            <div t-attf-class="o_kanban_card_header">
+                                <div class="o_kanban_card_header_title">
+                                    <div class="o_primary">
+                                        <field name="name"/>
+                                    </div>
+                                </div>
+                                <div class="o_dropdown_kanban dropdown">
+
+                                    <a role="button" class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" data-display="static" href="#" aria-label="Dropdown menu" title="Dropdown menu">
+                                        <span class="fa fa-ellipsis-v"/>
+                                    </a>
+                                    <div class="dropdown-menu" role="menu">
+                                        <t t-if="widget.editable"><a role="menuitem" type="edit" class="dropdown-item">Edit...</a></t>
+                                        <ul class="oe_kanban_colorpicker" data-field="color"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container o_kanban_card_content">
+                                <div class="row">
+                                    <div class="col-12 o_kanban_primary_left">
+                                        <field name="description"/>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    
+                                    <div class="col-6 o_kanban_primary_left">
+                                        <button class="btn btn-primary" name="call_wizard" type="object">
+                                            Generar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- tempronnics.report action window -->
+    <record id="model_tempronics_report_action" model="ir.actions.act_window">
+        <field name="name">Tempronics Reports</field>
+        <field name="res_model">tempronics.report</field>
+        <field name="view_mode">kanban,form</field>
+        <field name="view_id" ref="tempronics_report_view_kanban"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                
+            </p>
+        </field>
+    </record>
+
+    <!-- tempronics.report form view -->
+    <record id="tempronics_report_view_form" model="ir.ui.view">
+        <field name="name">tempronics.report.view.form</field>
+        <field name="model">tempronics.report</field>
+        <field name="arch" type="xml">
+            <form string="Tempronics report">
+                <sheet>
+                    <group string="General Settings">
+                        <!-- Add your fields here -->
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="view_wiz"/>
+                    </group>
+                    <group string="Default Locations">
+                        <field name="d_locations">
+                            <tree>
+                                <field name="display_name"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Default Categorys">
+                        <field name="d_categorys">
+                            <tree>
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <group string = "Extras">
+                        <field name="bom_exclude_part">
+                            <tree>
+                                <field name="display_name" />
+                            </tree>
+                        </field>
+                    </group>
+                    <group string="Obsolete">
+                        <field name="obsolete" />
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <menuitem
+        id="menu_tempronics_report_title"
+        name="Reports"
+        web_icon="tempronics_report,static/description/icon.png"
+        groups="base.group_user"
+        action="model_tempronics_report_action"
+        sequence="110"/>
+    
+    <menuitem
+        id="menu_tempro_report_config"
+        name="Configuration"
+        parent="menu_tempronics_report_title"
+        groups="base.group_user"
+        sequence="0"/>
+   
+</odoo>
