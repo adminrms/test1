@@ -1,4 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_tempronics_report_user,tempronics.report.user,model_tempronics_report,base.group_user,1,1,1,1
-access_wizard_temp_report_stock_locatio_user,wizard.temp.report.stock.location.user,model_wizard_temp_report_stock_locatio_user,base.group_user,1,1,1,1
+access_wizard_temp_report_stock_location_user,wizard.temp.report.stock.location,model_wizard_temp_report_stock_location,base.group_user,1,1,1,1
 access_wizard_temp_mrps_daily,wizard.temp.mrps.daily,model_wizard_temp_mrps_daily,base.group_user,1,1,1,1
