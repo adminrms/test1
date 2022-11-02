@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <record model='ir.ui.view' id='wizard_form_temp_mps_daily_report'>
+            <field name="name">Report MPS daily</field>
+            <field name="model">wizard.temp.mrps.daily</field>
+            <field name="arch" type="xml">
+                <form string="Wizard">
+                        <field name="document_name" invisible="True" />
+                        <group string="Range of Dates">
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                        </group>
+                        <group string = "Product (Optional)">
+                            <field name="product_id" />
+                        </group>
+                    <footer>
+                        <button name="export_xls" type="object" default_focus="1"
+                                string="Export MPS " class="oe_highlight"
+                                context="{'xls_export':1}" icon="fa-download"/>
+                        <button string="Cancel" class="oe_link" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <report 
+            id="trics_mps_daily_report"
+            model="wizard.temp.mrps.daily"
+            string="Mps Daily Report"
+            report_type="xlsx"
+            name="tempronics_report.mps_daily"
+            file="tempronics_report_mps_daily"
+            menu="False"
+            attachment_use="False"/>
+        
+    </data>
+</odoo>
