@@ -1,4 +1,0 @@
-id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_tempronics_api_mrp_bom,trics.mrp.bom,model_trics_mrp_bom,base.group_user,1,1,1,1
-access_trics_serial_group,access_trics_serial_group,model_trics_serial_group,base.group_user,1,1,1,1
-access_trics_config_api,access_trics_config_api,model_trics_config_api,base.group_user,1,1,1,1
